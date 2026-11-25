@@ -178,6 +178,7 @@ class CourseService:
             # create a row object using review attributes to insert into the reviews table
             row = {
             "course_id": str(course_id),
+            "user_id": review.user_id,
             "rating": review.rating,
             "difficulty": review.difficulty,
             "professor": review.professor,

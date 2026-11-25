@@ -3,6 +3,8 @@ from uuid import UUID
 
 from pydantic import BaseModel
 
+from schemas.reviews_schema import ReviewBase
+
 
 class UserModel(BaseModel):
     id: UUID
@@ -13,3 +15,13 @@ class UserModel(BaseModel):
     created_at: datetime
     updated_at: datetime
     is_anonymous: bool = False
+
+class ProfileModel(BaseModel):
+    user_id: UUID
+    created_at: datetime
+    username: str | None = None
+    
+class UserProfileDetails(BaseModel):
+    user_id: UUID
+    username: str | None
+    reviews: list[ReviewBase]

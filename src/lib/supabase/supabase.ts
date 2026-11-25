@@ -5,7 +5,3 @@ export const supabase = createClient(
     SUPABASE_URL,
     SUPABASE_ANON_KEY
 );
-
-async function SignInAnonymously(){
-    const {data, error} = await supabase.auth.signInAnonymously()
-}

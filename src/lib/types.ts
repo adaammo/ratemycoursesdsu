@@ -17,6 +17,7 @@ export type CourseCatalogResponse = CourseDatabase & {
 
 export type ReviewBase = {
     id: string; 
+    full_code: string | null;
     course_id: string;
     user_id: string | null;
     title: string;
@@ -65,4 +66,22 @@ export type ProfessorStatsResponse = {
   average_rating: number,
   average_difficulty: number,
   review_count: number
+}
+export type ProfileModel = {
+  user_id: string;
+  created_at: string;
+  username: string | null;
+};
+export type ProfileGetResponse = {
+  ok: boolean;
+  profile: ProfileModel | null;
+};
+export type UserProfileDetails = {
+    user_id: string;
+    username: string | null;
+    reviews: ReviewBase[];
+}
+export type UserProfilePageResponse = {
+  ok: true;
+  profile: UserProfileDetails | null
 }

@@ -6,17 +6,20 @@ from pydantic import BaseModel, Field
 
 class ReviewBase(BaseModel):
     course_id: str
+    full_code: str | None = None
+    user_id: str | None = None
     title: str = Field(max_length=100)
     body: str
     rating: int = Field(ge=1, le=5)
     difficulty: int = Field(ge=1, le=10)
-    grade: str = Field(eq=1)
+    grade: str | None = Field(default=None, min_length=1, max_length=3)
     professor: str | None
     created_at: str
 
 
 class ReviewCreate(BaseModel):
     rating: int = Field(ge=1, le=5)
+    user_id: str | None = None
     difficulty: int = Field(ge=1, le=10)
     professor: str | None = Field(default=None, max_length=100)
     title: str = Field(min_length=1, max_length=100)

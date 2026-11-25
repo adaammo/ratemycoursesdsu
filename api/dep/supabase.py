@@ -38,6 +38,13 @@ async def get_user(auth: str | None = Header(default=None, alias="Authorization"
     except Exception as e:
         raise HTTPException(status_code = status.HTTP_401_UNAUTHORIZED, detail = "Invalid Token")
 
+def get_supabase(authorization: str | None = Header(default=None, alias="Authorization")):
+    if not authorization:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Missing token.")
+    token = authorization.replace("Bearer ", "")
+    _supabase_client.postgrest.auth(token)
+    return _supabase_client
+
 # call this in Depend() API calls
 def get_supabase_public() -> Client:
     return _public_client
